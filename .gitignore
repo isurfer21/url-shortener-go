@@ -30,8 +30,10 @@ makefile
 url-shortener-go
 bin/
 pkg/
+db/
 src/github.com/
 
 # Ignore database files
 *.db
+*.db.lock
 *.gobs

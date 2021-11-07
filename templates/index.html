@@ -1,46 +1,68 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Index page for url-shortener-go">
-    <meta name="author" content="Daniel Bershatsky, 2017">
-    <link rel="icon" href="favicon.ico">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <meta name="description" content="Landing page for url-shortener-go" />
+    <meta name="author" content="Daniel Bershatsky, Abhsihek Kumar" />
+    <link rel="icon" href="favicon.ico" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      .app-title {
+        font-family: Calibri;
+        font-size: 32px;
+        margin: 10px 0 30px 0;
+      }
+      #short-url {
+        font-size: 24px;
+        font-family: Calibri;
+        background-color: honeydew;
+        padding: 10px 10px;
+        text-align: center;
+        color: darkslategrey;
+        margin-top: 24px;
+        border-radius: 3px;
+      }
+      #full-url {
+        width: 99%;
+        font-size: 16px;
+      }
+      #submit {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+    </style>
   </head>
 
   <body>
+    <div class="app-title">URL Shortener</div>
     <div>
       <form id="shorten-form" class="form-group">
         <div class="form-group">
-          <input id="full-url" class=".form-control" type="text" name="url" placeholder="put full url here">
-          <input id="submit" class=".form-control" type="submit">
+          <input id="full-url" class=".form-control" type="text" name="url" placeholder="Enter complete URL" />
+          <input id="submit" class=".form-control" type="submit" value="Shorten URL" />
         </div>
       </form>
-
-      <div id="short-url"></div>
+      <div id="short-url">N/A</div>
     </div>
 
     <script type="text/javascript">
-    $("#shorten-form").submit(function(e) {
-        var url = "shorten/";
+      $('#shorten-form').submit(function (e) {
+        var url = 'shorten/';
         e.preventDefault();
         $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#shorten-form").serialize(),
-            success: function(data, textStatus, request){
-                var loc = request.getResponseHeader('Location');
-                console.log(loc);
-                $("#short-url").text(loc);
-            },
+          type: 'POST',
+          url: url,
+          data: $('#shorten-form').serialize(),
+          success: function (data, textStatus, request) {
+            var loc = request.getResponseHeader('Location');
+            console.log(loc);
+            $('#short-url').text(loc);
+          },
         });
-    });
+      });
     </script>
   </body>
 </html>

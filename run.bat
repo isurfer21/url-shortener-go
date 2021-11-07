@@ -1,0 +1,1 @@
+.\bin\url-shortener -config .\etc\url-shortener-go.toml

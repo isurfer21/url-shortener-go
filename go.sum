@@ -1,0 +1,8 @@
+github.com/BurntSushi/toml v0.4.1 h1:GaI7EiDXDRfa8VshkTj7Fym7ha+y8/XxIgD2okUIjLw=
+github.com/BurntSushi/toml v0.4.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
+github.com/boltdb/bolt v1.3.1 h1:JQmyP4ZBrce+ZQu0dY660FMfatumYDLun9hBCUVIkF4=
+github.com/boltdb/bolt v1.3.1/go.mod h1:clJnj/oiGkjum5o1McbSZDSLxVThjynRyGBgiAx27Ps=
+github.com/daskol/url-shortener-go v0.0.0-20170811132641-3701de17453e h1:ce78WTsQVgpjqyCLKIMpnTrwbC6BajKU9d2EjMOpjx8=
+github.com/daskol/url-shortener-go v0.0.0-20170811132641-3701de17453e/go.mod h1:g+KKuJhudg0W5uzta5MagVoIiNwkfLAe1kDntAnvkO0=
+golang.org/x/sys v0.0.0-20211107104306-e0b2ad06fe42 h1:G2DDmludOQZoWbpCr7OKDxnl478ZBGMcOhrv+ooX/Q4=
+golang.org/x/sys v0.0.0-20211107104306-e0b2ad06fe42/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

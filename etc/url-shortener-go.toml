@@ -1,8 +1,8 @@
-host = "localhost"  # address to listen and serve
+host = "0.0.0.0"  # address to listen and serve
 port = 8080  # port to listen and serve
 
-host_name = "http://localhost:8080"  # for short URL building
-expiring_time = 3600  # duration in seconds, to store permanently set `-1`
+host_name = "/xyz"  # for short URL suffix building
+expiring_time = -1  # duration in seconds, say 3600; to store permanently set `-1`
 uri_length = 8  # length of URI of short URL
 url_storage = "bolt"  # allowed values are map and bolt
 
@@ -10,4 +10,4 @@ url_storage = "bolt"  # allowed values are map and bolt
 # nothing
 
 [bolt-storage]
-database = "url-storage-bolt.db"
+database = "db/url-storage-bolt.db"

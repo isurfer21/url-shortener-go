@@ -1,0 +1,1 @@
+go build -o bin\url-shortener.exe main.go

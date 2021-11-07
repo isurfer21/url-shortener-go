@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 	"strconv"
 	"time"
 
@@ -61,10 +62,10 @@ func extractHostname(r *http.Request) string {
 		hostname += forwarded_host[0]
 	} else if len(r.Host) > 0 {
 		hostname += r.Host
-	} else {
-		hostname += config.HostName
-	}
-
+	} 
+	
+	hostname += config.HostName
+	
 	return hostname
 }
 
@@ -102,7 +103,10 @@ func HandleShortRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleExpandRequest(w http.ResponseWriter, r *http.Request) {
-	if url, ok := urlStorage.Get(core.Uri(r.URL.Path)); ok {
+	linkId := "/" + string(path.Base(r.URL.Path))
+	// linkId := r.URL.Path
+
+	if url, ok := urlStorage.Get(core.Uri(linkId)); ok {
 		w.Header().Set("Location", string(url))
 		w.WriteHeader(http.StatusFound)
 	} else if r.URL.Path == "/" {
@@ -167,8 +171,7 @@ func NewUrlStorage(config *Config) (core.UrlStorage, error) {
 func main() {
 	flag.Parse()
 
-	log.Println("    Simple URL shortner in Go")
-	log.Println("    Daniel Bershatsky <daniel.bershatsky@skolkovotech.ru>, 2017")
+	log.Println("URL Shortener")
 
 	config = ReadConfig(*configPath)
 	storage, err := NewUrlStorage(&config)
