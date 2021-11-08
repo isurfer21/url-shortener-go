@@ -4,8 +4,6 @@
 
 ## Overview
 
-[*Читайте на русском здесь.*](README.ru.md)
-
 URL Shortner provides two kinds of URL storages. The first one wraps `map` data structure native in GO and makes it thread-sage. Unfortunately, the current implementation guarantee reliable storing. So in case of persistent storage is main requirement the second one was introduced which is based on [Bolt DB](https://github.com/boltdb/bolt). Waranties and properties of shortener implementation are pointed the following out.
 
 1. Thread-safe for new URL shornening.
@@ -20,8 +18,6 @@ In order to start `url-shortener-go` by oneself with persistency storing of URLS
     ./url-shortener --url-storage bolt
 ```
 Or one could register it as a system service defined with [systemd unit file](etc/url-shortener-go.service) and could run it.
-
-[Try it here.](https://daskol.xyz/shorten/)
 
 ### API Methods
 
