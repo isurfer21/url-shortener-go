@@ -9,7 +9,9 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"strings"
 	"time"
+	"fmt"
 
 	"github.com/BurntSushi/toml"
 	"github.com/daskol/url-shortener-go/core"
@@ -47,6 +49,46 @@ var urlStorage core.UrlStorage
 var tplIndexFiles = []string{"templates/index.html"}
 var tplIndex = template.Must(template.ParseFiles(tplIndexFiles...))
 
+// getHost tries its best to return the request host.
+func getHost(r *http.Request) string {
+	if r.URL.IsAbs() {
+		host := r.Host
+		// Slice off any port information.
+		if i := strings.Index(host, ":"); i != -1 {
+			host = host[:i]
+		}
+		return host
+	}
+	return r.URL.Host
+}
+
+// formatRequest generates ascii representation of a request
+func formatRequest(r *http.Request) string {
+	// Create return string
+	var request []string
+	// Add the request string
+	url := fmt.Sprintf("%v %v %v", r.Method, r.URL, r.Proto)
+	request = append(request, url)
+	// Add the host
+	request = append(request, fmt.Sprintf("Host: %v", r.Host))
+	// Loop through headers
+	for name, headers := range r.Header {
+		name = strings.ToLower(name)
+		for _, h := range headers {
+			request = append(request, fmt.Sprintf("%v: %v", name, h))
+		}
+	}
+
+	// If this is a POST, add post data
+	if r.Method == "POST" {
+		r.ParseForm()
+		request = append(request, "\n")
+		request = append(request, r.Form.Encode())
+	}
+	// Return the request as a string
+	return strings.Join(request, "\n")
+}
+
 func extractHostname(r *http.Request) string {
 	var hostname string
 
@@ -62,10 +104,12 @@ func extractHostname(r *http.Request) string {
 		hostname += forwarded_host[0]
 	} else if len(r.Host) > 0 {
 		hostname += r.Host
-	} 
-	
-	hostname += config.HostName
-	
+	}
+
+	if config.HostName != "" {
+		hostname = config.HostName	
+	}
+
 	return hostname
 }
 

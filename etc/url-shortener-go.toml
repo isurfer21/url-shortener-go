@@ -1,7 +1,7 @@
 host = "0.0.0.0"  # address to listen and serve
 port = 8080  # port to listen and serve
 
-host_name = "/xyz"  # for short URL suffix building
+host_name = "http://short.url/xyz"  # for short URL building
 expiring_time = -1  # duration in seconds, say 3600; to store permanently set `-1`
 uri_length = 8  # length of URI of short URL
 url_storage = "bolt"  # allowed values are map and bolt
